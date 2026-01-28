@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smoothie Personality Quiz</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: #f7f7fa;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        body::before {
+            content: none;
+        }
+        .quiz-box {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 18px rgba(205,56,83,0.08);
+            backdrop-filter: none;
+            padding: 48px 56px;
+            margin-top: 32px;
+            max-width: 440px;
+            width: 100%;
+            overflow-y: auto;
+            max-height: 70vh;
+            position: relative;
+            border: none;
+        }
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(205,56,83,0.08);
+            border: 1px solid #cd3853;
+            margin-right: 8px;
+            background: #fff;
+            object-fit: cover;
+        }
+        .main-header, .main-footer {
+            background: #fff;
+            color: #222;
+            box-shadow: 0 2px 8px rgba(205,56,83,0.05);
+            border-radius: 0;
+        }
+        .main-header {
+            margin-bottom: 0;
+            padding: 18px 0 10px 0;
+        }
+        .main-footer {
+            margin-top: 42px;
+            text-align: center;
+            font-size: 1em;
+            letter-spacing: 0.01em;
+            padding: 24px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            border-radius: 0;
+        }
+        .logo {
+            font-size: 2em;
+            color: #ffb347;
+            font-weight: bold;
+            letter-spacing: 0.04em;
+            text-shadow: none;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 8px;
+        }
+        .footer-social a {
+            color: #222;
+        }
+        .return-button {
+            display: inline-block;
+            margin: 32px auto 0 auto;
+            padding: 12px 28px;
+            background: #ffe5ec;
+            color: #cd3853;
+            font-size: 1.1em;
+            border: 2px solid #cd3853;
+            border-radius: 10px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: none;
+        }
+        .return-button:hover {
+            background: #cd3853;
+            color: #fff;
+        }
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+        .quiz-title {
+            text-shadow: none;
+            font-size: 1.6em;
+            color: #cd3853;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            margin-bottom: 28px;
+        }
+        .quiz-title span {
+            display: block;
+        }
+        .quiz-question {
+            color: #444;
+            font-size: 1.15em;
+            font-weight: 600;
+            text-shadow: none;
+            margin-bottom: 18px;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .quiz-options label {
+            background: #fff;
+            border-radius: 0;
+            padding: 12px 18px;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+            font-size: 1em;
+            border: 1px solid #eee;
+            box-shadow: 0 1px 4px rgba(205,56,83,0.04);
+            color: #222;
+        }
+        .quiz-options label:hover {
+            background: #f7f7fa;
+        }
+        .quiz-options input[type="radio"] {
+            margin-right: 10px;
+        }
+        .quiz-next {
+            margin-top: 22px;
+            padding: 12px 28px;
+            background: #ffe5ec;
+            color: #cd3853;
+            border: 2px solid #cd3853;
+            border-radius: 10px;
+            font-size: 1.08em;
+            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+            box-shadow: none;
+            text-shadow: none;
+        }
+        .quiz-next:focus {
+            outline: 2px solid #cd3853;
+        }
+        .quiz-result {
+            margin-top: 28px;
+            font-size: 1.18em;
+            color: #222;
+            text-align: center;
+            text-shadow: none;
+            padding: 12px 0;
+        }
+        .smoothie-personality {
+            margin-top: 10px;
+            font-style: italic;
+            color: #444;
+            text-shadow: none;
+        }
+        @media (max-width: 600px) {
+            .quiz-box {
+                padding: 18px 8px;
+                max-width: 98vw;
+            }
+            .quiz-title {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-header">
+        <div class="logo-area">
+            <img src="../assets/logo.jpg" alt="Smooth Me Logo" class="logo-img" />
+            <div class="logo">🍍 Smooth me</div>
+        </div>
+    </div>
+    <div class="center-content">
+        <div class="quiz-box" id="quiz-box">
+            <div class="quiz-title">
+                <span>Ever wondered what smoothie you are?</span>
+                <span>Take the plan quiz below!</span>
+            </div>
+            <!-- Questions will be injected here -->
+        </div>
+    <a href="index.html" class="return-button">Return to Main Page</a>
+    </div>
+    <footer class="main-footer">
+        <div>&copy; 2025 Smooth Me. All rights reserved. | Made by Sofie</div>
+        <div class="footer-social">
+            <a href="#" title="Fake Instagram">Instagram</a>
+            <a href="#" title="Fake Email">Email</a>
+        </div>
+    </footer>
+    <script>
+        const smoothiePersonalities = {
+            banana: {
+                name: "Banana Smoothie",
+                description: "You’re laid-back, easygoing, and always bring comfort to those around you. Like a banana smoothie, you’re reliable and sweet!",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWOtpH5MTL0-BcynupEfd3L1PHyEgqTpyEJw&s"
+            },
+            berrymix: {
+                name: "Berry Mix Smoothie",
+                description: "You love adventure and variety! Just like a berry mix, you’re colorful, fun, and always up for something new.",
+                image: "https://ardo.com/sites/default/files/styles/teaser_square_xs/public/2024-04/fruit_berry_mix_0.jpg?h=b85135ca&itok=Q_V9C8Sx"
+            },
+            blueberry: {
+                name: "Blueberry Smoothie",
+                description: "You’re smart, thoughtful, and a bit mysterious. Like blueberries, you’re packed with wisdom and always a healthy choice.",
+                image: "https://buybc.gov.bc.ca/app/uploads/sites/386/2024/03/Blueberries_53184788.png"
+            },
+            mango: {
+                name: "Mango Smoothie",
+                description: "You’re energetic, lively, and bring sunshine wherever you go. Mango smoothies are tropical and exciting—just like you!",
+                image: "https://gomarked.no/wp-content/uploads/mango-green-red-Pasta-olivenolje-kjeks-oliven-netthandel-halal-kjott-blomster-dagligvarer-dadler-frukt-gronnsaker-delikatesse-sultanmarked-e1700094979650.png"
+            },
+            strawberry: {
+                name: "Strawberry Smoothie",
+                description: "You’re friendly, cheerful, and everyone’s favorite! Like strawberries, you’re sweet, bright, and bring joy to any group.",
+                image: "https://cdn11.bigcommerce.com/s-kc25pb94dz/images/stencil/1280w/products/255/721/Strawberries__57434.1657116605.jpg"
+            }
+        };
+
+        const quizQuestions = [
+            {
+                question: "Pick a word that describes you best:",
+                options: [
+                    { value: "banana", text: "Chill" },
+                    { value: "berrymix", text: "Adventurous" },
+                    { value: "blueberry", text: "Smart" },
+                    { value: "mango", text: "Energetic" },
+                    { value: "strawberry", text: "Friendly" }
+                ]
+            },
+            {
+                question: "What’s your ideal weekend activity?",
+                options: [
+                    { value: "banana", text: "Relaxing at home" },
+                    { value: "berrymix", text: "Trying something new" },
+                    { value: "blueberry", text: "Reading or learning" },
+                    { value: "mango", text: "Outdoor adventure" },
+                    { value: "strawberry", text: "Hanging out with friends" }
+                ]
+            },
+            {
+                question: "Choose a color you vibe with:",
+                options: [
+                    { value: "banana", text: "Yellow" },
+                    { value: "berrymix", text: "Purple" },
+                    { value: "blueberry", text: "Blue" },
+                    { value: "mango", text: "Orange" },
+                    { value: "strawberry", text: "Red" }
+                ]
+            },
+            {
+                question: "Pick a taste you love most:",
+                options: [
+                    { value: "banana", text: "Creamy & sweet" },
+                    { value: "berrymix", text: "Tangy & mixed" },
+                    { value: "blueberry", text: "Earthy & tart" },
+                    { value: "mango", text: "Tropical & juicy" },
+                    { value: "strawberry", text: "Fresh & sweet" }
+                ]
+            }
+        ];
+
+        let answers = [];
+
+        function renderQuestion(index) {
+            const q = quizQuestions[index];
+            const quizBox = document.getElementById('quiz-box');
+
+            // Question container
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'quiz-question';
+            questionDiv.textContent = q.question;
+
+            // Options
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'quiz-options';
+            q.options.forEach(opt => {
+                const label = document.createElement('label');
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.name = `question${index}`;
+                input.value = opt.value;
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(opt.text));
+                optionsDiv.appendChild(label);
+            });
+
+            // Next button
+            const nextBtn = document.createElement('button');
+            nextBtn.type = 'button';
+            nextBtn.className = 'quiz-next';
+            nextBtn.textContent = index < quizQuestions.length - 1 ? 'Next' : 'See My Smoothie!';
+            nextBtn.onclick = function() {
+                const selected = optionsDiv.querySelector('input:checked');
+                if (!selected) {
+                    nextBtn.textContent = "Please select an option!";
+                    setTimeout(() => {
+                        nextBtn.textContent = index < quizQuestions.length - 1 ? 'Next' : 'See My Smoothie!';
+                    }, 1200);
+                    return;
+                }
+                answers[index] = selected.value;
+                nextBtn.disabled = true;
+                // Show next question or result
+                if (index < quizQuestions.length - 1) {
+                    renderQuestion(index + 1);
+                    setTimeout(() => {
+                        quizBox.lastElementChild.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                } else {
+                    showResult();
+                    setTimeout(() => {
+                        document.getElementById('quiz-result').scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                }
+            };
+
+            // Append to quiz box
+            quizBox.appendChild(questionDiv);
+            quizBox.appendChild(optionsDiv);
+            quizBox.appendChild(nextBtn);
+        }
+
+        function showResult() {
+            // Tally answers
+            const counts = {};
+            answers.forEach(val => {
+                counts[val] = (counts[val] || 0) + 1;
+            });
+            // Find max
+            let max = 0, smoothie = "banana";
+            for (const key in counts) {
+                if (counts[key] > max) {
+                    max = counts[key];
+                    smoothie = key;
+                }
+            }
+            const resultDiv = document.createElement('div');
+            resultDiv.id = 'quiz-result';
+            resultDiv.className = 'quiz-result';
+            const s = smoothiePersonalities[smoothie];
+            resultDiv.innerHTML = `
+                <strong>You are a ${s.name}!</strong>
+                <div class="smoothie-personality">${s.description}</div>
+                <img src="${s.image}" alt="${s.name}" style="margin-top:16px;max-width:160px;border-radius:8px;">
+            `;
+            document.getElementById('quiz-box').appendChild(resultDiv);
+        }
+
+        // Initial render: show first question on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderQuestion(0);
+        });
+    </script>
+</body>
+</html>

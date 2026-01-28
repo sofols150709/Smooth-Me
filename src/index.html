@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smooth me | A smoothie plan project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Quicksand', Arial, sans-serif;
+            background: #f7f7fa;
+        }
+        h1, h2 {
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        h1 {
+            font-size: 2.2em;
+            color: #d97a5a;
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+        h2 {
+            color: #d97a5a;
+            font-size: 1.5em;
+            margin-bottom: 18px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+        p, ul, li {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.08em;
+            color: #333;
+        }
+        .main-header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 24px 0 12px 0;
+            text-align: center;
+        }
+        .logo {
+            font-size: 2.5em;
+            color: #d97a5a;
+            font-weight: bold;
+            letter-spacing: 0.04em;
+        }
+        .main-nav {
+            margin-top: 12px;
+        }
+        .main-nav a {
+            color: #cd3853;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 18px;
+            font-size: 1.15em;
+            transition: color 0.2s;
+        }
+        .main-nav a:hover {
+            color: #ff6f61;
+        }
+        .hero {
+            background: linear-gradient(90deg, #ffe5ec 0%, #f7f7fa 100%);
+            padding: 48px 0 32px 0;
+            text-align: center;
+        }
+        .hero-content h1 {
+            font-size: 2.2em;
+            color: #d97a5a;
+            margin-bottom: 12px;
+        }
+        .hero-content p {
+            font-size: 1.2em;
+            color: #4a7c59;
+            margin-bottom: 18px;
+        }
+        .hero-highlight {
+            color: #d97a5a;
+            font-weight: bold;
+        }
+        .hero-img {
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(205,56,83,0.10);
+            max-width: 320px;
+            width: 80%;
+            margin: 24px auto 0 auto;
+            display: block;
+        }
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 16px;
+        }
+        section {
+            margin-bottom: 48px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            padding: 32px 24px;
+        }
+        .divider-img {
+            width: 100%;
+            height: 38px;
+            opacity: 0.18;
+            border-radius: 0;
+            margin: 18px 0;
+            object-fit: cover;
+            display: block;
+        }
+        ul {
+            padding-left: 20px;
+            line-height: 2.05;
+        }
+        .plan-title {
+            font-size: 1.18em;
+            color: #4a7c59;
+            margin-bottom: 18px;
+            font-weight: bold;
+        }
+        .plan-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .option-btn {
+            flex: 1 1 180px;
+            padding: 16px 22px;
+            background: #ffe5ec;
+            color: #cd3853;
+            border: 2px solid #cd3853;
+            border-radius: 10px;
+            font-size: 1.13em;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.2s, color 0.2s;
+            margin-bottom: 8px;
+        }
+        .option-btn:hover, .option-btn.selected {
+            background: #cd3853;
+            color: #fff;
+        }
+        .plan-result {
+            background: #f0f8ff;
+            border-radius: 10px;
+            padding: 22px 18px;
+            margin-top: 12px;
+            color: #333;
+            font-size: 1.10em;
+            display: none;
+            line-height: 2.05;
+        }
+        .plan-result.active {
+            display: block;
+            animation: fadeIn 0.4s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .contact-list li {
+            margin-bottom: 14px;
+        }
+        .main-footer {
+            margin-top: 42px;
+            text-align: center;
+            color: #999;
+            font-size: 1em;
+            letter-spacing: 0.01em;
+            padding: 24px 0;
+        }
+        @media (max-width: 700px) {
+            .main-content { padding: 12px 2vw; }
+            section { padding: 18px 8px; }
+            .hero-img { max-width: 180px; }
+            .divider-img { height: 24px; }
+        }
+        @media (max-width: 500px) {
+            .main-content { padding: 4px 1vw; }
+            section { padding: 8px 2px; }
+            .hero-img { max-width: 120px; }
+            .divider-img { height: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">🍍 Smooth me</div>
+        <nav class="main-nav">
+            <a href="#about">About</a>
+            <a href="#plan">Get Your Plan</a>
+            <a href="#contact">Contact</a>
+            <a href="newpage2.html">Best Smoothies</a>
+            <a href="newpage.html">Personality Quiz</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Smooth me 🍓</h1>
+            <p>Your go-to place for healthy, delicious, and creative smoothie plans.<br>
+            <span class="hero-highlight">Inspire your health journey with nutritious smoothies every day!</span></p>
+            <img src="SmoothMe/bilder/logo.jpg" alt="Smooth Me Logo" class="hero-img" style="max-width:180px;border-radius:12px;box-shadow:0 2px 8px rgba(205,56,83,0.08);background:#fff;object-fit:cover;" />
+        </div>
+    </section>
+    <main class="main-content">
+        <section id="about" class="about-section">
+            <h2>About Smooth me</h2>
+            <p>Hi, I'm Sofie! 🍌<br>
+            At Smooth me, we believe healthy living should be easy, fun, and full of flavor. Our team is passionate about helping you discover the joy of smoothies, with plans that fit every lifestyle and taste.</p>
+            <ul>
+                <li>Expertly crafted smoothie plans by nutrition enthusiasts</li>
+                <li>Real ingredients, balanced nutrition, and creative combinations</li>
+                <li>Friendly community and support</li>
+                <li>Innovation: mobile app, exclusive merch, and more coming soon!</li>
+            </ul>
+        </section>
+        <section class="highlight-section">
+            <h2>Exciting News!</h2>
+            <p>Our Smooth Me mobile app is launching soon! Track your smoothie habits, get daily recipes, and unlock fun rewards. Stay tuned for exclusive early access and special offers for our website visitors!</p>
+            <p><strong>Coming soon:</strong> Smooth Me PRO for businesses and gyms, group challenges, and a members-only recipe vault!</p>
+        </section>
+        <section class="testimonial-section">
+            <h2>What our fans say</h2>
+            <ul>
+                <li>“Smooth me made healthy eating so easy and fun!” – Emma, Bergen</li>
+                <li>“I love the weekly plans. I feel more energized every day!” – Jonas, Oslo</li>
+                <li>“The support team is so friendly and helpful!” – Mia, Stavanger</li>
+            </ul>
+        </section>
+        <section class="why-section">
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>Handpicked smoothie plans for every lifestyle and goal</li>
+                <li>Fun and easy recommendations—no guesswork!</li>
+                <li>Fresh ideas every week</li>
+                <li>Friendly support and tips from Sofie and the team</li>
+                <li>Exclusive merch: bottles, hoodies, and more coming soon!</li>
+                <li>Events and workshops for smoothie lovers</li>
+                <li>Newsletter with tips, recipes, and discounts</li>
+            </ul>
+        </section>
+        <section id="plan" class="plan-section">
+            <h2>Get Your Weekly Smoothie Plan</h2>
+            <p class="plan-title">Choose what you want to improve:</p>
+            <div class="plan-options">
+                <button class="option-btn" data-plan="energy">I want more energy 🍍</button>
+                <button class="option-btn" data-plan="weight">I want to lose weight 🍓</button>
+                <button class="option-btn" data-plan="allergy">I have allergies 🥝</button>
+                <button class="option-btn" data-plan="healthy">I want to eat healthier 🍏</button>
+                <button class="option-btn" data-plan="surprise">Surprise me! 🍉</button>
+            </div>
+            <div class="plan-result" id="planResult"></div>
+        </section>
+        <section id="contact" class="contact-section">
+            <h2>Contact Us</h2>
+            <ul class="contact-list">
+                <li><strong>Email:</strong> hello@smoothme.com</li>
+                <li><strong>Instagram:</strong> <a href="https://instagram.com/smoothmeproject" target="_blank">@smoothmeproject</a></li>
+                <li><strong>Phone:</strong> +47 123 45 678</li>
+                <li><strong>Address:</strong> Smooth Me HQ, Oslo, Norway</li>
+            </ul>
+            <div class="contact-details">
+                <strong>Business hours:</strong> Mon-Fri 09:00–17:00<br>
+                <strong>How to reach us:</strong> Email, phone, or social media.<br>
+                <strong>Partnerships & Events:</strong> Group plans, workshops, and special events.<br>
+                <strong>Customer Support:</strong> We reply to all messages within 24 hours.<br>
+                <strong>Newsletter & Updates:</strong> Sign up for exclusive recipes, early app access, and discounts.<br>
+                <strong>Feedback:</strong> We love hearing from you.<br>
+                <strong>Visit us:</strong> Drop by our HQ in Oslo for a chat or workshop!
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer">
+        &copy; 2025 Smooth me. All rights reserved. | Made by Sofie
+    </footer>
+    <script>
+    const smoothiePlans = {
+        energy: {
+            name: "Energy Boost",
+            plan: [
+                "Monday: Mango & Banana Power Smoothie 🍌",
+                "Tuesday: Berry Mix Antioxidant Blend 🍓",
+                "Wednesday: Pineapple & Spinach Refresher 🍍",
+                "Thursday: Strawberry Oatmeal Breakfast 🍓",
+                "Friday: Blueberry Protein Shake 🫐",
+                "Saturday: Tropical Detox Smoothie 🍍",
+                "Sunday: Apple & Kiwi Green Smoothie 🍏🥝"
+            ]
+        },
+        weight: {
+            name: "Weight Loss",
+            plan: [
+                "Monday: Green Detox Smoothie 🥝",
+                "Tuesday: Berry Protein Slim Shake 🍓",
+                "Wednesday: Citrus & Carrot Cleanser 🍊",
+                "Thursday: Spinach & Pineapple Slim Blend 🍍",
+                "Friday: Strawberry & Chia Fiber Smoothie 🍓",
+                "Saturday: Watermelon Hydration Mix 🍉",
+                "Sunday: Peach & Ginger Metabolism Booster 🍑"
+            ]
+        },
+        allergy: {
+            name: "Allergy Friendly",
+            plan: [
+                "Monday: Banana & Pear Smoothie (no nuts/dairy) 🍌",
+                "Tuesday: Mango & Coconut Water Blend 🥥",
+                "Wednesday: Blueberry & Rice Milk Shake 🫐",
+                "Thursday: Pineapple & Spinach (no citrus) 🍍",
+                "Friday: Strawberry & Oat Milk 🍓",
+                "Saturday: Apple & Kiwi (no soy) 🍏🥝",
+                "Sunday: Melon & Mint Cooler 🍈"
+            ]
+        },
+        healthy: {
+            name: "Healthy Living",
+            plan: [
+                "Monday: Spinach & Avocado Green Smoothie 🥑",
+                "Tuesday: Berry & Flaxseed Antioxidant Blend 🍓",
+                "Wednesday: Carrot & Orange Immunity Booster 🥕🍊",
+                "Thursday: Banana & Oatmeal Breakfast Smoothie 🍌",
+                "Friday: Pineapple & Kale Detox 🍍",
+                "Saturday: Strawberry & Almond Milk 🍓",
+                "Sunday: Mango & Chia Seed Power Mix 🥭"
+            ]
+        },
+        surprise: {
+            name: "Surprise Mix",
+            plan: [
+                "Monday: Watermelon & Mint Cooler 🍉",
+                "Tuesday: Apple Pie Smoothie 🍏🥧",
+                "Wednesday: Tropical Coconut Blend 🥥",
+                "Thursday: Blueberry & Lemon Zest 🫐🍋",
+                "Friday: Peach & Basil Refresher 🍑",
+                "Saturday: Kiwi & Spinach Green Power 🥝",
+                "Sunday: Raspberry & Banana Dream 🍌"
+            ]
+        }
+    };
+    document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.onclick = function() {
+            document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            const chosen = smoothiePlans[btn.getAttribute('data-plan')];
+            const resultDiv = document.getElementById('planResult');
+            resultDiv.innerHTML =
+                `<strong>Your Weekly Smoothie Plan: (${chosen.name})</strong><ul style="margin-top:8px;">${chosen.plan.map(day => `<li>${day}</li>`).join('')}</ul>`;
+            resultDiv.classList.add('active');
+        };
+    });
+    </script>
+</body>
+</html>

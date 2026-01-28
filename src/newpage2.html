@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Best Smoothie Recommendations!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: #f7f7fa;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('./SmoothMe/bilder/1101702.png') center center no-repeat;
+            background-size: cover;
+            opacity: 0.10;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            background: transparent;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            min-height: 100vh;
+            height: 100vh;
+        }
+        .smoothie-scrollbox {
+            width: 100%;
+            max-width: 600px;
+            height: 97vh;
+            background: #fff;
+            box-shadow: 0 4px 24px rgba(230,124,74,0.10);
+            overflow-y: auto;
+            padding: 36px 44px;
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            color: #d97a5a;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2.2em;
+            letter-spacing: 0.04em;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+        .return-button {
+            display: inline-block;
+            margin: 30px auto 0 auto;
+            padding: 12px 28px;
+            background: #e67c4a;
+            color: #fff;
+            font-size: 1.05em;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .return-button:hover {
+            background: #cd3853;
+        }
+        .smoothie-list {
+            list-style: none;
+            padding: 0;
+        }
+        .smoothie-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .smoothie-title {
+            font-size: 1.7em;
+            color: #d97a5a;
+            cursor: pointer;
+            margin: 0.7em 0 0.2em 0;
+            text-align: center;
+            font-family: 'Montserrat', Arial, sans-serif;
+            letter-spacing: 0.07em;
+            transition: color 0.2s;
+            font-weight: 600;
+        }
+        .smoothie-title:hover {
+            text-decoration: underline;
+            color: #e67c4a;
+        }
+        .smoothie-desc {
+            display: none;
+            margin-top: 10px;
+            color: #333;
+            width: 100%;
+            justify-content: center;
+        }
+        .info-list {
+            margin: 10px 0 0 0;
+            padding: 0 0 0 18px;
+        }
+        .info-list li {
+            margin-bottom: 6px;
+        }
+        .recipe {
+            background: #f0f8ff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-size: 0.98em;
+        }
+        .glaze {
+            color: #e67c4a;
+            font-style: italic;
+            margin-top: 6px;
+        }
+        .origin {
+            color: #4a7c59;
+            margin-top: 6px;
+        }
+        .desc-flex {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            justify-content: center;
+        }
+        .desc-flex img {
+            flex: 1;
+            max-width: 180px;
+            max-height: 140px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        .desc-flex .desc-info {
+            flex: 2;
+        }
+        .smoothie-separator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            background: none;
+            border: none;
+        }
+        .smoothie-separator::before {
+            content: '';
+            display: block;
+            width: 12px;
+            height: 12px;
+            border: 1.5px solid #e67c4a;
+            border-radius: 50%;
+            background: none;
+            opacity: 0.5;
+        }
+        @media (max-width: 700px) {
+            .smoothie-scrollbox { padding: 18px 8px; max-width: 98vw; }
+            h1 { font-size: 1.3em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-header" style="background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.05);padding:24px 0 12px 0;text-align:center;">
+        <div class="logo" style="font-size:2.5em;color:#d97a5a;font-weight:bold;letter-spacing:0.04em;">🍍 Smooth me</div>
+    </div>
+    <div style="height:32px;"></div>
+    <div class="container">
+        <div class="smoothie-scrollbox">
+            <h1>Our Best Smoothie Plans!</h1>
+            <ul class="smoothie-list">
+                <li class="smoothie-item">
+                    <h2 class="smoothie-title" data-id="banana">Banana Smoothie</h2>
+                    <div class="smoothie-desc" id="desc-banana">
+                        <div class="desc-flex">
+                            <div class="desc-info">
+                                Creamy and sweet, banana smoothies are perfect for breakfast or a quick snack. They’re rich in potassium and energy!
+                                <ul class="info-list">
+                                    <li><strong>Nutrition:</strong> High in potassium, vitamin B6, and fiber.</li>
+                                    <li><strong>Best time to drink:</strong> Morning or post-workout.</li>
+                                    <li><strong>Fun fact:</strong> Bananas help boost your mood due to tryptophan!</li>
+                                    <li class="origin"><strong>Origin:</strong> Native to Southeast Asia, now grown in tropical regions worldwide.</li>
+                                </ul>
+                                <div class="glaze">
+                                    Bananas are the golden champions of the fruit world—creamy, sweet, and always ready to energize your day!
+                                </div>
+                                <div class="recipe">
+                                    <strong>Recipe:</strong> Blend 1 banana, 1/2 cup yogurt, 1/2 cup milk, and a teaspoon of honey.
+                                </div>
+                            </div>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWOtpH5MTL0-BcynupEfd3L1PHyEgqTpyEJw&s" alt="Banana">
+                        </div>
+                    </div>
+                </li>
+                <li class="smoothie-separator"></li>
+                <li class="smoothie-item">
+                    <h2 class="smoothie-title" data-id="berrymix">Berry Mix Smoothie</h2>
+                    <div class="smoothie-desc" id="desc-berrymix">
+                        <div class="desc-flex">
+                            <div class="desc-info">
+                                Berry mix smoothies combine strawberries, blueberries, raspberries, and more for a burst of flavor and nutrition.
+                                <ul class="info-list">
+                                    <li><strong>Nutrition:</strong> High in antioxidants, vitamin C, and fiber.</li>
+                                    <li><strong>Best time to drink:</strong> Anytime you need a vitamin boost.</li>
+                                    <li><strong>Fun fact:</strong> Mixed berries help support heart health!</li>
+                                    <li class="origin"><strong>Origin:</strong> Berries are found across the world, from North America’s blueberries to Europe’s raspberries and South America’s blackberries.</li>
+                                </ul>
+                                <div class="glaze">
+                                    Berry mixes are a festival of flavors—colorful, tangy, and packed with goodness in every sip!
+                                </div>
+                                <div class="recipe">
+                                    <strong>Recipe:</strong> Blend 1 cup mixed berries, 1/2 cup apple juice, and 1/2 banana.
+                                </div>
+                            </div>
+                            <img src="https://ardo.com/sites/default/files/styles/teaser_square_xs/public/2024-04/fruit_berry_mix_0.jpg?h=b85135ca&itok=Q_V9C8Sx" alt="Berry Mix">
+                        </div>
+                    </div>
+                </li>
+                <li class="smoothie-separator"></li>
+                <li class="smoothie-item">
+                    <h2 class="smoothie-title" data-id="blueberry">Blueberry Smoothie</h2>
+                    <div class="smoothie-desc" id="desc-blueberry">
+                        <div class="desc-flex">
+                            <div class="desc-info">
+                                Blueberry smoothies are loaded with antioxidants and have a tangy-sweet taste. They’re perfect for a healthy treat.
+                                <ul class="info-list">
+                                    <li><strong>Nutrition:</strong> Packed with antioxidants, vitamin K, and fiber.</li>
+                                    <li><strong>Best time to drink:</strong> Breakfast or as a brain-boosting snack.</li>
+                                    <li><strong>Fun fact:</strong> Blueberries can help improve memory!</li>
+                                    <li class="origin"><strong>Origin:</strong> Native to North America, thrive in cool, temperate climates.</li>
+                                </ul>
+                                <div class="glaze">
+                                    Blueberries are nature’s tiny superfoods—vibrant, tangy, and bursting with health benefits!
+                                </div>
+                                <div class="recipe">
+                                    <strong>Recipe:</strong> Blend 1 cup blueberries, 1/2 cup almond milk, and 1 tablespoon chia seeds.
+                                </div>
+                            </div>
+                            <img src="https://buybc.gov.bc.ca/app/uploads/sites/386/2024/03/Blueberries_53184788.png" alt="Blueberry">
+                        </div>
+                    </div>
+                </li>
+                <li class="smoothie-separator"></li>
+                <li class="smoothie-item">
+                    <h2 class="smoothie-title" data-id="mango">Mango Smoothie</h2>
+                    <div class="smoothie-desc" id="desc-mango">
+                        <div class="desc-flex">
+                            <div class="desc-info">
+                                Mango smoothies are tropical, sweet, and full of antioxidants. They’re great for cooling down on a hot day.
+                                <ul class="info-list">
+                                    <li><strong>Nutrition:</strong> High in vitamin A, vitamin C, and folate.</li>
+                                    <li><strong>Best time to drink:</strong> Hot afternoons or after exercise.</li>
+                                    <li><strong>Fun fact:</strong> Mango is known as the "king of fruits" in many countries.</li>
+                                    <li class="origin"><strong>Origin:</strong> Native to South Asia, especially India, now grown in tropical and subtropical regions worldwide.</li>
+                                </ul>
+                                <div class="glaze">
+                                    Mangoes bring the sunshine to your glass—tropical, juicy, and absolutely irresistible!
+                                </div>
+                                <div class="recipe">
+                                    <strong>Recipe:</strong> Blend 1 cup mango chunks, 1/2 cup coconut milk, and a squeeze of lime.
+                                </div>
+                            </div>
+                            <img src="https://gomarked.no/wp-content/uploads/mango-green-red-Pasta-olivenolje-kjeks-oliven-netthandel-halal-kjott-blomster-dagligvarer-dadler-frukt-gronnsaker-delikatesse-sultanmarked-e1700094979650.png" alt="Mango">
+                        </div>
+                    </div>
+                </li>
+                <li class="smoothie-separator"></li>
+                <li class="smoothie-item">
+                    <h2 class="smoothie-title" data-id="strawberry">Strawberry Smoothie</h2>
+                    <div class="smoothie-desc" id="desc-strawberry">
+                        <div class="desc-flex">
+                            <div class="desc-info">
+                                Strawberry smoothies are refreshing and packed with vitamin C. Their bright flavor makes them a favorite for all ages.
+                                <ul class="info-list">
+                                    <li><strong>Nutrition:</strong> Rich in vitamin C, antioxidants, and manganese.</li>
+                                    <li><strong>Best time to drink:</strong> Afternoon snack or summer treat.</li>
+                                    <li><strong>Fun fact:</strong> Strawberries are the only fruit with seeds on the outside!</li>
+                                    <li class="origin"><strong>Origin:</strong> Strawberries originated in Europe and North America, and today they're grown in temperate climates around the globe.</li>
+                                </ul>
+                                <div class="glaze">
+                                    Strawberries are little red jewels bursting with flavor—each sip is like tasting summer itself!
+                                </div>
+                                <div class="recipe">
+                                    <strong>Recipe:</strong> Blend 1 cup strawberries, 1/2 banana, 1/2 cup orange juice, and ice.
+                                </div>
+                            </div>
+                            <img src="https://cdn11.bigcommerce.com/s-kc25pb94dz/images/stencil/1280w/products/255/721/Strawberries__57434.1657116605.jpg" alt="Strawberry">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <a href="index.html" class="return-button">Return to Main Page</a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.smoothie-title').forEach(function(title) {
+                title.addEventListener('click', function() {
+                    var id = title.getAttribute('data-id');
+                    var desc = document.getElementById('desc-' + id);
+                    if (desc) {
+                        desc.style.display = desc.style.display === 'block' ? 'none' : 'block';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
