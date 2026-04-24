@@ -107,7 +107,7 @@ function displayPlanWithFilter(planKey) {
         allSmoothiesList.appendChild(item);
     });
 
-    // Add filter event listeners
+
     document.querySelectorAll('.allergen-checkboxes input').forEach(checkbox => {
         checkbox.removeEventListener('change', filterSmoothies);
         checkbox.addEventListener('change', filterSmoothies);
@@ -129,7 +129,7 @@ function displayPlanWithFilter(planKey) {
         });
     }
 }
-
+ 
 function showPersonalityAlert() {
     const personality = sessionStorage.getItem('smoothiePersonality');
     if (personality) {

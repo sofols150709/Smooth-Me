@@ -1,4 +1,3 @@
-// Quiz page JavaScript
 const smoothiePersonalities = {
     banana: {
         name: "Banana Smoothie",
@@ -68,7 +67,7 @@ const smoothiePersonalities = {
         name: "Açai Bowl Smoothie",
         description: "Du er trendbevisst, stilfull og elsker detaljer. Vakker, næringsrik og Instagram-verdig!",
         personality: "Stilfull, trendsetter og god smak",
-        bestFor: "Antioksidanter, wellness, designet verkt",
+        bestFor: "Antioksidanter, wellness, estetikk",
         traits: ["Stilfull", "Trendsetter", "Kreativ"],
         image: "https://images.unsplash.com/photo-1590080876570-d77b5f2fb5d3?w=400&h=300&fit=crop"
     }

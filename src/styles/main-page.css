@@ -137,12 +137,13 @@ ul {
 
 .plan-options {
     display: flex;
-    flex-wrap: wrap;
+    
     gap: 16px;
     margin-bottom: 24px;
 }
 
 .option-btn {
+    
     flex: 1 1 180px;
     padding: 16px 22px;
     background: #ffe5ec;
