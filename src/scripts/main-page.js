@@ -105,7 +105,7 @@ function displayPlanWithFilter(planKey) {
             </div>
         `;
         allSmoothiesList.appendChild(item);
-    });
+    });  
 
 
     document.querySelectorAll('.allergen-checkboxes input').forEach(checkbox => {
@@ -124,7 +124,7 @@ function displayPlanWithFilter(planKey) {
             if (hasSelectedAllergen) {
                 item.classList.add('hidden');
             } else {
-                item.classList.remove('hidden');
+                item.classList.remove('hidden'); 
             }
         });
     }
